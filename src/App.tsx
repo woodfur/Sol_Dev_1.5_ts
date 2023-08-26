@@ -94,6 +94,7 @@ function App() {
     }
     const web3authProvider = await web3auth.connect();
     setProvider(web3authProvider);
+    setLoggedIn(true); //added this bit - setting the usestae to true if the user is loggedin
   };
 
   const authenticateUser = async () => {
@@ -243,10 +244,9 @@ function App() {
         <a target="_blank" href="http://web3auth.io/" rel="noreferrer">
           Web3Auth
         </a>
-        & ReactJS Example
       </h1>
 
-      <div className="grid">{provider ? loggedInView : unloggedInView}</div>
+      <div className="grid">{loggedIn ? loggedInView : unloggedInView}</div>
 
       <footer className="footer">
         <a
