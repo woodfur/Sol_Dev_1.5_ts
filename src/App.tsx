@@ -122,7 +122,7 @@ function App() {
     }
     await web3auth.logout();
     setProvider(null);
-    setLoggedIn(false);
+    setLoggedIn(false); // Added this bit to set the value of loggedin
   };
 
   const getAccounts = async () => {
