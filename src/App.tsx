@@ -234,32 +234,30 @@ function App() {
   );
 
   const unloggedInView = (
-    <button onClick={login} className="card">
-      Login
-    </button>
-  );
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <div>
+        <img
+          src="src/assets/logo_place.png"
+          alt="Logo"
+          className="w-40 h-40 mt-10 rounded-full shadow-lg"
+        />
+      </div>
 
-  return (
-    <div className="container">
-      <h1 className="title">
-        <a target="_blank" href="http://web3auth.io/" rel="noreferrer">
-          Web3Auth
-        </a>
-      </h1>
-
-      <div className="grid">{loggedIn ? loggedInView : unloggedInView}</div>
-
-      <footer className="footer">
-        <a
-          href="https://github.com/Web3Auth/web3auth-pnp-examples/"
-          target="_blank"
-          rel="noopener noreferrer"
+      <div className="gap-6">
+        <button
+          onClick={login}
+          className="mt-8 px-6 py-3 mx-9 bg-buttoncolor text-white rounded-md shadow-md"
         >
-          Source code
-        </a>
-      </footer>
+          Login
+        </button>
+        <button className="mt-4 px-6 py-3 mx-9 bg-gray-300 text-gray-700 rounded-md shadow-md">
+          Sign Up
+        </button>
+      </div>
     </div>
   );
+
+  return <div className="grid">{loggedIn ? loggedInView : unloggedInView}</div>;
 }
 
 export default App;
