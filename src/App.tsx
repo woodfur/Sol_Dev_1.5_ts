@@ -24,7 +24,7 @@ function App() {
       try {
         const web3auth = new Web3Auth({
           clientId,
-          web3AuthNetwork: "testnet", // mainnet, aqua,  cyan or testnet
+          web3AuthNetwork: "testnet", // mainnet, aqua,  cyan or testnet. Connected to testnet
           chainConfig: {
             chainNamespace: CHAIN_NAMESPACES.SOLANA,
             chainId: "0x2", // Please use 0x1 for Mainnet, 0x2 for Testnet, 0x3 for Devnet
@@ -94,7 +94,7 @@ function App() {
     }
     const web3authProvider = await web3auth.connect();
     setProvider(web3authProvider);
-    setLoggedIn(true); //added this bit - setting the usestae to true if the user is loggedin
+    setLoggedIn(true); //added this bit - setting the usestae to true if the user is loggedin_27_08_23
   };
 
   const authenticateUser = async () => {
