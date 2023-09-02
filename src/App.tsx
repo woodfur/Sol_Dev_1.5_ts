@@ -20,6 +20,7 @@ import Transfer from "./pages/Transfer";
 import Pay from "./pages/Pay";
 import History from "./pages/History";
 import Profile from "./pages/profile";
+import Login from "./components/Login";
 
 const clientId =
   "BLX3GOzcfJWhPX5RqvDPccxMLRdEIa5Dpaq7-TD_QnbeSvWJlrrUr0P_fo9TLo4AOERlSI8MZ-f8Cnb-781C-kY"; // get from https://dashboard.web3auth.io
@@ -273,15 +274,14 @@ function App() {
     <div>
       <Router>
         {loggedIn ? (
-          <switch>
-            <Routes>
-              <Route path="/home" element={<Home />} />
-              <Route path="/transfer" element={<Transfer />} />
-              <Route path="/pay" element={<Pay />} />
-              <Route path="/Profile" element={<Profile />} />
-              <Route path="/history" element={<History />} />
-            </Routes>
-          </switch>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/transfer" element={<Transfer />} />
+            <Route path="/pay" element={<Pay />} />
+            <Route path="/Profile" element={<Profile />} />
+            <Route path="/history" element={<History />} />
+          </Routes>
         ) : (
           unloggedInView
         )}
