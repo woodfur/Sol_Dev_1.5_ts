@@ -9,6 +9,18 @@ import { OpenloginAdapter } from "@web3auth/openlogin-adapter";
 import RPC from "./solanaRPC";
 import "./App.css";
 
+import {
+  BrowserRouter as Router,
+  Route,
+  BrowserRouter,
+  Routes,
+} from "react-router-dom";
+import Home from "./pages/Home";
+import Transfer from "./pages/Transfer";
+import Pay from "./pages/Pay";
+import History from "./pages/History";
+import Profile from "./pages/profile";
+
 const clientId =
   "BLX3GOzcfJWhPX5RqvDPccxMLRdEIa5Dpaq7-TD_QnbeSvWJlrrUr0P_fo9TLo4AOERlSI8MZ-f8Cnb-781C-kY"; // get from https://dashboard.web3auth.io
 
@@ -257,7 +269,25 @@ function App() {
     </div>
   );
 
-  return <div className="grid">{loggedIn ? loggedInView : unloggedInView}</div>;
+  return (
+    <div>
+      <Router>
+        {loggedIn ? (
+          <switch>
+            <Routes>
+              <Route path="/home" element={<Home />} />
+              <Route path="/transfer" element={<Transfer />} />
+              <Route path="/pay" element={<Pay />} />
+              <Route path="/Profile" element={<Profile />} />
+              <Route path="/history" element={<History />} />
+            </Routes>
+          </switch>
+        ) : (
+          unloggedInView
+        )}
+      </Router>
+    </div>
+  );
 }
 
 export default App;
