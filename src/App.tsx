@@ -22,6 +22,8 @@ import History from "./pages/History";
 import Profile from "./pages/profile";
 import Login from "./components/Login";
 
+import Web3AuthContext from "./Web3AuthContext";
+
 const clientId =
   "BLX3GOzcfJWhPX5RqvDPccxMLRdEIa5Dpaq7-TD_QnbeSvWJlrrUr0P_fo9TLo4AOERlSI8MZ-f8Cnb-781C-kY"; // get from https://dashboard.web3auth.io
 
@@ -272,20 +274,26 @@ function App() {
 
   return (
     <div>
-      <Router>
-        {loggedIn ? (
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/transfer" element={<Transfer />} />
-            <Route path="/pay" element={<Pay />} />
-            <Route path="/Profile" element={<Profile />} />
-            <Route path="/history" element={<History />} />
-          </Routes>
-        ) : (
-          unloggedInView
-        )}
-      </Router>
+      <Web3AuthContext.Provider
+        value={{ web3auth, provider, loggedIn, login, setLoggedIn }}
+      >
+        {" "}
+        <Router>
+          {loggedIn ? (
+            <Routes>
+              <Route path="/" element={<Login />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/transfer" element={<Transfer />} />
+              <Route path="/pay" element={<Pay />} />
+              <Route path="/Profile" element={<Profile />} />
+              <Route path="/history" element={<History />} />
+              <Route path="/Login" element={<Login />} />
+            </Routes>
+          ) : (
+            <Login />
+          )}
+        </Router>
+      </Web3AuthContext.Provider>
     </div>
   );
 }
