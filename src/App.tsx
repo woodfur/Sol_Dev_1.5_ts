@@ -8,6 +8,7 @@ import {
 import { OpenloginAdapter } from "@web3auth/openlogin-adapter";
 import RPC from "./solanaRPC";
 import "./App.css";
+import handyimage from "./assets/HandyPay.png";
 
 import {
   BrowserRouter as Router,
@@ -48,7 +49,7 @@ function App() {
           uiConfig: {
             theme: "dark",
             loginMethodsOrder: ["facebook", "google"],
-            appLogo: "https://web3auth.io/images/w3a-L-Favicon-1.svg", // Your App Logo Here
+            appLogo: "https://i.ibb.co/dgJsxKh/Handy-Pay-1.png", // Your App Logo Here
           },
         });
 
