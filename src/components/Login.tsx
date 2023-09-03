@@ -4,6 +4,7 @@ import React from "react";
 import Web3AuthContext from "../Web3AuthContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import handpayimage from "../assets/HandyPay.png";
 
 const Login = () => {
   const { login, web3auth, setLoggedIn } = useContext(Web3AuthContext);
@@ -21,13 +22,11 @@ const Login = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div>
-        <img
-          src="src/assets/logo_place.png"
-          alt="Logo"
-          className="w-40 h-40 mt-10 rounded-full shadow-lg"
-        />
-      </div>
+      <img
+        src={handpayimage}
+        alt="Logo"
+        className="w-40 h-40 mt-10 rounded-full shadow-lg"
+      />
 
       <div className="gap-6">
         <button

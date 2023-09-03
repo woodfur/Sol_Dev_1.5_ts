@@ -252,7 +252,7 @@ function App() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div>
         <img
-          src="src/assets/logo_place.png"
+          src="src/assets/HandyPay.png"
           alt="Logo"
           className="w-40 h-40 mt-10 rounded-full shadow-lg"
         />
