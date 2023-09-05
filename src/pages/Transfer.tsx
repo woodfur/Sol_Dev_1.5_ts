@@ -1,7 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
 import Navbar from "../components/Navbar";
+import SolanaRpc from "../solanaRPC";
+import Web3AuthContext from "../Web3AuthContext";
+import { SafeEventEmitterProvider } from "@web3auth/base";
+import { ParsedInstruction } from "@solana/web3.js";
 
 const Transfer = () => {
+  const { provider } = useContext(Web3AuthContext);
+  const solanaRPC = new SolanaRpc(provider as SafeEventEmitterProvider);
+
+  solanaRPC.getTransactionHistory().then((txHistory) => {
+    console.log(txHistory);
+
+    console.log(
+      (txHistory[0]?.transaction.message.instructions[0] as ParsedInstruction)
+        .parsed.info
+    );
+  });
+
+  solanaRPC.getBalance().then((amount) => {
+    console.log(amount);
+  });
+
+  solanaRPC
+    .sendTransaction(0.05, "7z7Q3UH4cMxSNDTATsQcC34rr4MVA9ydqpbeqnU4q7ba")
+    .then((txSig) => {
+      console.log(txSig);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+
   return (
     <div className="p-4">
       {/* Search Bar */}

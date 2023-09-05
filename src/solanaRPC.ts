@@ -1,6 +1,8 @@
 import {
+  ConfirmedSignatureInfo,
     Connection,
     LAMPORTS_PER_SOL,
+    ParsedTransactionWithMeta,
     PublicKey,
     SystemProgram,
     Transaction,
@@ -37,10 +39,31 @@ import {
   
         const accounts = await solanaWallet.requestAccounts();
         const balance = await conn.getBalance(new PublicKey(accounts[0]));
+
   
         return balance.toString();
       } catch (error) {
         return error as string;
+      }
+    };
+
+    getTransactionHistory = async (): Promise<(ParsedTransactionWithMeta | null)[]> => {
+      try {
+        const solanaWallet = new SolanaWallet(this.provider);
+        const connectionConfig = await solanaWallet.request<CustomChainConfig>({
+          method: "solana_provider_config",
+          params: [],
+        });
+        const conn = new Connection(connectionConfig.rpcTarget);
+  
+        const accounts = await solanaWallet.requestAccounts();
+        const signatures = (await conn.getSignaturesForAddress(new PublicKey(accounts[0]))).map((sigInfo) => sigInfo.signature);
+
+        const tx = await conn.getParsedTransactions(signatures)
+  
+        return tx;
+      } catch (error) {
+        return []
       }
     };
   
@@ -56,7 +79,7 @@ import {
       }
     };
   
-    sendTransaction = async (): Promise<string> => {
+    sendTransaction = async (amount?: number, address?: string): Promise<string> => {
       try {
         const solanaWallet = new SolanaWallet(this.provider);
   
@@ -72,8 +95,8 @@ import {
   
         const TransactionInstruction = SystemProgram.transfer({
           fromPubkey: new PublicKey(accounts[0]),
-          toPubkey: new PublicKey(accounts[0]),
-          lamports: 0.01 * LAMPORTS_PER_SOL,
+          toPubkey: new PublicKey(address || accounts[0] ),
+          lamports: (amount || 0.01) * LAMPORTS_PER_SOL,
         });
   
         const transaction = new Transaction({
