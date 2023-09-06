@@ -20,7 +20,7 @@ const Operations = () => {
               Pay
             </button>
             <button className="bg-buttoncolor  text-white px-4 py-2 rounded-lg">
-              <Link to="/Land">Send</Link>
+              <Link to="/Transfer">Send</Link>
             </button>
           </div>
         </div>
