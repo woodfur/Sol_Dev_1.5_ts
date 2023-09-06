@@ -10,12 +10,7 @@ import RPC from "./solanaRPC";
 import "./App.css";
 import handyimage from "./assets/HandyPay.png";
 
-import {
-  BrowserRouter as Router,
-  Route,
-  BrowserRouter,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Transfer from "./pages/Transfer";
 import Pay from "./pages/Pay";
