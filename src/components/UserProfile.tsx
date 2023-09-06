@@ -38,7 +38,7 @@ const UserProfile = () => {
         <div className="flex items-center mb-4">
           <i className="fas fa-user text-sm text-buttoncolor mr-3"></i>
           <div>
-            <h3 className="text-sm font-semibold text-gray-800">Tim.io</h3>
+            <h3 className="text-sm font-semibold text-gray-800">UserName</h3>
           </div>
         </div>
         <div>
@@ -46,7 +46,7 @@ const UserProfile = () => {
             <i className="fas fa-envelope text-sm text-gray-600 mr-2"></i>
             <div>
               <p className="text-gray-800 font-semibold text-sm">
-                williamstimothy016@gmail.com
+                EmailPlaceHolder
               </p>
             </div>
           </div>
@@ -54,7 +54,7 @@ const UserProfile = () => {
             <i className="fas fa-phone-alt text-sm text-gray-600 mr-2"></i>
             <div>
               <p className="text-gray-800 font-semibold text-sm">
-                just adding for the commit
+                PhoneNo. Placeholder
               </p>
             </div>
           </div>
