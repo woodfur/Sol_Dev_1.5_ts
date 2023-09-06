@@ -54,7 +54,7 @@ const UserProfile = () => {
             <i className="fas fa-phone-alt text-sm text-gray-600 mr-2"></i>
             <div>
               <p className="text-gray-800 font-semibold text-sm">
-                +232 79 359 655
+                just adding for the commit
               </p>
             </div>
           </div>
