@@ -63,12 +63,14 @@ const UserProfile = () => {
             <i className="fa-solid fa-file-powerpoint text-sm text-gray-600 mr-2"></i>
             <div>
               <div />{" "}
-              <button
-                className="bg-buttoncolor text-white px-4 py-2 rounded-md"
-                onClick={() => navigator.clipboard.writeText(address)}
-              >
-                Public Address
-              </button>
+              <div>
+                <button
+                  className="bg-buttoncolor text-white px-4 py-2 rounded-md"
+                  onClick={() => navigator.clipboard.writeText(address)}
+                >
+                  Public Address
+                </button>
+              </div>
             </div>
           </div>
         </div>
