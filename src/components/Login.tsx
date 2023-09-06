@@ -36,7 +36,10 @@ const Login = () => {
         >
           Login
         </button>
-        <button className="mt-4 px-6 py-3 mx-9 bg-gray-300 text-gray-700 rounded-md shadow-md">
+        <button
+          onClick={handleLogin}
+          className="mt-4 px-6 py-3 mx-9 bg-gray-300 text-gray-700 rounded-md shadow-md"
+        >
           Sign Up
         </button>
       </div>
