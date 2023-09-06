@@ -30,6 +30,7 @@ const Login = () => {
 
       <div className="gap-6">
         <button
+          id="login-button"
           onClick={handleLogin}
           className="mt-8 px-6 py-3 mx-9 bg-buttoncolor text-white rounded-md shadow-md"
         >

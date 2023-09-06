@@ -43,13 +43,13 @@ function App() {
           web3AuthNetwork: "testnet", // mainnet, aqua,  cyan or testnet. Connected to testnet
           chainConfig: {
             chainNamespace: CHAIN_NAMESPACES.SOLANA,
-            chainId: "0x2", // Please use 0x1 for Mainnet, 0x2 for Testnet, 0x3 for Devnet
+            chainId: "0x2", //  0x1 for Mainnet, 0x2 for Testnet, 0x3 for Devnet
             rpcTarget: "https://api.testnet.solana.com", // This is the public RPC we have added, please pass on your own endpoint while creating an app
           },
           uiConfig: {
             theme: "dark",
             loginMethodsOrder: ["facebook", "google"],
-            appLogo: "https://i.ibb.co/dgJsxKh/Handy-Pay-1.png", // Your App Logo Here
+            appLogo: "https://i.ibb.co/dgJsxKh/Handy-Pay-1.png",
           },
         });
 
@@ -60,10 +60,10 @@ function App() {
           adapterSettings: {
             whiteLabel: {
               name: "Sol_Dev",
-              logoLight: "https://web3auth.io/images/w3a-L-Favicon-1.svg",
-              logoDark: "https://web3auth.io/images/w3a-D-Favicon-1.svg",
+              logoLight: "https://i.ibb.co/1nG23t1/HandyPay.png",
+              logoDark: "https://i.ibb.co/1nG23t1/HandyPay.png",
               defaultLanguage: "en",
-              dark: true, // whether to enable dark mode. defaultValue: false
+              dark: true,
             },
           },
         });
