@@ -1,5 +1,12 @@
 import React from "react";
 
+import { useState, useEffect, useContext } from "react";
+import Web3AuthContext from "../Web3AuthContext";
+import { Connection, PublicKey } from "@solana/web3.js";
+import SolanaRpc from "../solanaRPC";
+import { SafeEventEmitterProvider } from "@web3auth/base";
+import { ParsedInstruction } from "@solana/web3.js";
+
 const TopNavBar = () => {
   return (
     <div>
@@ -12,7 +19,7 @@ const TopNavBar = () => {
           />
         </div>
         <div>
-          <p className="text-center text-sm font-semibold">Wallet Address</p>
+          <p className="text-center text-sm font-semibold">Welcome!</p>
         </div>
         <div className="w-6"></div>
       </header>

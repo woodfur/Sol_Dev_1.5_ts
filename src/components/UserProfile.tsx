@@ -2,6 +2,11 @@ import React from "react";
 import Web3AuthContext from "../Web3AuthContext";
 import { useContext } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import { Connection, PublicKey } from "@solana/web3.js";
+import SolanaRpc from "../solanaRPC";
+import { SafeEventEmitterProvider } from "@web3auth/base";
+import { ParsedInstruction } from "@solana/web3.js";
+import { useState, useEffect } from "react";
 
 const UserProfile = () => {
   const { web3auth } = useContext(Web3AuthContext);
@@ -14,6 +19,19 @@ const UserProfile = () => {
       // Redirect to login page or do something else after logout.
     }
   };
+
+  const [address, setAddress] = useState<string>("");
+  const { provider } = useContext(Web3AuthContext);
+  const solanaRPC = new SolanaRpc(provider as SafeEventEmitterProvider);
+
+  useEffect(() => {
+    solanaRPC.getAccounts().then((PublicKey) => {
+      const Pubaddress = PublicKey.join(", ");
+      setAddress(Pubaddress);
+      console.log(PublicKey);
+    });
+  });
+
   return (
     <div className="flex flex-col h-screen overflow-y-scroll">
       <div className="bg-white shadow-lg rounded-lg p-4">
@@ -38,6 +56,19 @@ const UserProfile = () => {
               <p className="text-gray-800 font-semibold text-sm">
                 +232 79 359 655
               </p>
+            </div>
+          </div>
+          <br />
+          <div className="flex items-center max-w-screen">
+            <i className="fa-solid fa-file-powerpoint text-sm text-gray-600 mr-2"></i>
+            <div>
+              <div />{" "}
+              <button
+                className="bg-buttoncolor text-white px-4 py-2 rounded-md"
+                onClick={() => navigator.clipboard.writeText(address)}
+              >
+                Public Address
+              </button>
             </div>
           </div>
         </div>

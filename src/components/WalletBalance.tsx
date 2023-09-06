@@ -3,10 +3,33 @@ import React from "react";
 import { useState, useEffect, useContext } from "react";
 import Web3AuthContext from "../Web3AuthContext";
 import { Connection, PublicKey } from "@solana/web3.js";
+import SolanaRpc from "../solanaRPC";
+import { SafeEventEmitterProvider } from "@web3auth/base";
+import { ParsedInstruction } from "@solana/web3.js";
 
 const WalletBalance = () => {
   const { web3auth } = useContext(Web3AuthContext);
-  const [balance, setBalance] = useState<number | null>(null);
+  const [balance, setBalance] = useState<number>(0);
+  const { provider } = useContext(Web3AuthContext);
+  const solanaRPC = new SolanaRpc(provider as SafeEventEmitterProvider);
+
+  const [exchangeRate, setExchangeRate] = useState<number>(0);
+
+  fetch("https://api.exchangerate.host/latest?base=SLL&symbols=USD")
+    .then((response) => response.json())
+    .then((data) => {
+      setExchangeRate(data.rates.USD);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+  useEffect(() => {
+    solanaRPC.getBalance().then((amount) => {
+      setBalance(parseInt(amount));
+      console.log(amount);
+    });
+  });
 
   return (
     <div>
@@ -17,8 +40,13 @@ const WalletBalance = () => {
               Wallet Balance
             </h2>
             <div />
-            <p className="mt-2 text-xl text-buttoncolor font-bold">$ 30</p>
-            <p className="mt-2 text-gray-600">592</p>
+            <p className="mt-2 text-xl text-buttoncolor font-bold">
+              $ {balance / 1000000000}
+            </p>
+            <p className="mt-2 text-gray-600">
+              {" "}
+              Le {(balance / 1000000000 / exchangeRate).toFixed(2)}
+            </p>
           </div>
         </div>
       </div>
