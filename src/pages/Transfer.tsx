@@ -11,22 +11,17 @@ const Transfer = () => {
   const { provider } = useContext(Web3AuthContext);
   const solanaRPC = new SolanaRpc(provider as SafeEventEmitterProvider);
 
-  solanaRPC.getTransactionHistory().then((txHistory) => {
-    console.log(txHistory);
-
-    console.log(
-      (txHistory[0]?.transaction.message.instructions[0] as ParsedInstruction)
-        .parsed.info
-    );
-  });
-
-  solanaRPC.getBalance().then((amount) => {
-    return amount;
-    console.log(amount);
-  });
-
   const [address, setAddress] = useState<string>("");
   const [amount, setAmount] = useState<number>(0);
+
+  const [balance, setBalance] = useState<number>(0);
+
+  useEffect(() => {
+    solanaRPC.getBalance().then((amount) => {
+      setBalance(parseInt(amount));
+      console.log(amount);
+    });
+  });
 
   function SendTransaction(
     event: React.SyntheticEvent<HTMLFormElement>,
@@ -37,14 +32,20 @@ const Transfer = () => {
   ) {
     event.preventDefault();
 
-    solanaRPC
-      .sendTransaction(amount, address)
-      .then((txSig) => {
-        console.log(txSig);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    if (balance / 1000000000 > amount) {
+      solanaRPC
+        .sendTransaction(amount, address)
+        .then((txSig) => {
+          console.log(txSig);
+          alert("Transfer successful");
+        })
+        .catch((err) => {
+          console.error(err);
+          alert("Transaction failed");
+        });
+    } else {
+      alert("Not sufficient balance");
+    }
   }
   return (
     <div className="p-4">

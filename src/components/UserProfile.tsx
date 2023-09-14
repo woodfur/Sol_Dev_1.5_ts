@@ -66,7 +66,10 @@ const UserProfile = () => {
               <div>
                 <button
                   className="bg-buttoncolor text-white px-4 py-2 rounded-md"
-                  onClick={() => navigator.clipboard.writeText(address)}
+                  onClick={() => {
+                    navigator.clipboard.writeText(address);
+                    alert("Public key copied");
+                  }}
                 >
                   Public Address
                 </button>
