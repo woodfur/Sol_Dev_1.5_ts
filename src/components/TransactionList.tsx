@@ -8,7 +8,6 @@ import { useContext } from "react";
 import { useState, useEffect } from "react";
 
 const TransactionList: React.FC = () => {
-  /*
   const { provider } = useContext(Web3AuthContext);
   const solanaRPC = new SolanaRpc(provider as SafeEventEmitterProvider);
   const [transactions, setTransactions] = useState<Transaction[] | null>(null);
@@ -51,7 +50,7 @@ const TransactionList: React.FC = () => {
         });
     };
     fetchData();
-  }, [provider]); 
+  }, [provider]);
 
   const transactionItems = transactions?.map((tx, index) => (
     <li key={index} className="flex items-center">
@@ -65,9 +64,6 @@ const TransactionList: React.FC = () => {
     </li>
   ));
 
-  {loading ? <p>Loading...</p> : transactionItems}
-  */
-
   return (
     <div>
       <div className="bg-white shadow-lg rounded-lg p-4 my-10 mx-4">
@@ -77,7 +73,10 @@ const TransactionList: React.FC = () => {
             Show All
           </a>
         </div>
-        <ul className="space-y-4"></ul>
+        <ul className="space-y-4">
+          {" "}
+          {loading ? <p>Loading...</p> : transactionItems}
+        </ul>
       </div>
     </div>
   );

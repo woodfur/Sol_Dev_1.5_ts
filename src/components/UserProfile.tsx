@@ -16,7 +16,6 @@ const UserProfile = () => {
     if (web3auth) {
       await web3auth.logout();
       navigate("/login", { replace: true });
-      // Redirect to login page or do something else after logout.
     }
   };
 
