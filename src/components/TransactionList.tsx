@@ -12,6 +12,7 @@ const TransactionList: React.FC = () => {
   const solanaRPC = new SolanaRpc(provider as SafeEventEmitterProvider);
   const [transactions, setTransactions] = useState<Transaction[] | null>(null);
   const [loading, setLoading] = useState(true);
+
   interface Transaction {
     sender: string;
     receiver: string;

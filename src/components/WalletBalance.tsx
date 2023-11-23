@@ -2,7 +2,7 @@ import React from "react";
 
 import { useState, useEffect, useContext } from "react";
 import Web3AuthContext from "../Web3AuthContext";
-import { Connection, PublicKey } from "@solana/web3.js";
+import { Connection, LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
 import SolanaRpc from "../solanaRPC";
 import { SafeEventEmitterProvider } from "@web3auth/base";
 import { ParsedInstruction } from "@solana/web3.js";
@@ -19,6 +19,7 @@ const WalletBalance = () => {
     .then((response) => response.json())
     .then((data) => {
       setExchangeRate(data.rates.USD);
+      console.log(exchangeRate);
     })
     .catch((error) => {
       console.error(error);
@@ -31,6 +32,7 @@ const WalletBalance = () => {
     });
   });
 
+  const formatedbalance = balance / LAMPORTS_PER_SOL;
   return (
     <div>
       <div className="mx-4 my-10 mt-20">
@@ -41,11 +43,11 @@ const WalletBalance = () => {
             </h2>
             <div />
             <p className="mt-2 text-xl text-buttoncolor font-bold">
-              $ {balance / 1000000000}
+              $ {formatedbalance}
             </p>
             <p className="mt-2 text-gray-600">
               {" "}
-              Le {(balance / 1000000000 / exchangeRate).toFixed(2)}
+              Le {(formatedbalance * exchangeRate).toFixed(2)}
             </p>
           </div>
         </div>
